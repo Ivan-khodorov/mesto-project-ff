@@ -28,30 +28,47 @@ if (profileImage) {
     profileImage.style.backgroundImage = `url(${avatar})`;
 }
 
-const handleImageClick = (data) => {
+const handleImageClick = data => {
     popupImageElement.src = data.link;
     popupImageElement.alt = data.name;
     popupCaptionElement.textContent = data.name;
     openPopup(popupImage);
 };
 
-formEditProfile.addEventListener('submit', (e) => {
+formEditProfile.addEventListener('submit', e => {
     e.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileDescription.textContent = jobInput.value;
     closePopup(popupEditProfile);
 });
 
-formNewCard.addEventListener('submit', (e) => {
+formNewCard.addEventListener('submit', e => {
     e.preventDefault();
-    const card = createCard({ name: placeNameInput.value, link: linkInput.value }, handleDeleteCard, handleLikeCard, handleImageClick, cardTemplate);
+    const card = createCard(
+        { name: placeNameInput.value, link: linkInput.value },
+        {
+            onDeleteCard: handleDeleteCard,
+            onLikeCard: handleLikeCard,
+            onOpenPreviewImage: handleImageClick
+        },
+        cardTemplate
+    );
     placesList.prepend(card);
     formNewCard.reset();
     closePopup(popupAddCard);
 });
 
 initialCards.forEach(data => {
-    placesList.append(createCard(data, handleDeleteCard, handleLikeCard, handleImageClick, cardTemplate));
+    const card = createCard(
+        data,
+        {
+            onDeleteCard: handleDeleteCard,
+            onLikeCard: handleLikeCard,
+            onOpenPreviewImage: handleImageClick
+        },
+        cardTemplate
+    );
+    placesList.append(card);
 });
 
 editProfileButton.addEventListener('click', () => {
@@ -65,8 +82,8 @@ addCardButton.addEventListener('click', () => {
     openPopup(popupAddCard);
 });
 
-document.querySelectorAll('.popup').forEach((popup) => {
-    popup.addEventListener('mousedown', (e) => {
+document.querySelectorAll('.popup').forEach(popup => {
+    popup.addEventListener('mousedown', e => {
         const target = e.target;
         if (target instanceof HTMLElement && (target.classList.contains('popup__close') || target === popup)) {
             closePopup(popup);
