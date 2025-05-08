@@ -7,6 +7,7 @@
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
     "cssnano": "^7.0.6",
+    "gh-pages": "^6.3.0",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
@@ -363,7 +364,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --mode development --port 3000",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -375,5 +378,5 @@
   "bugs": {
     "url": "https://github.com/Ivan-khodorov/mesto-project-ff/issues"
   },
-  "homepage": "https://github.com/Ivan-khodorov/mesto-project-ff#readme"
+  "homepage": "https://Ivan-khodorov.github.io/mesto-project-ff"
 }
