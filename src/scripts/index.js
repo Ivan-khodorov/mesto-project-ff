@@ -37,7 +37,6 @@ const popupImage = document.querySelector('.popup_type_image');
 const popupImageElement = popupImage.querySelector('.popup__image');
 const popupCaptionElement = popupImage.querySelector('.popup__caption');
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.places__item');
-const profileImage = document.querySelector('.profile__image');
 const avatarPopup = document.querySelector('.popup_type_avatar');
 const formAvatar = document.forms['avatar-form'];
 const avatarInput = formAvatar['avatar'];
