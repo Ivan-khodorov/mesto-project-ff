@@ -21,3 +21,27 @@
   right: 0;
   z-index: 10;
 }
+
+.popup__input_type_error {
+  border-bottom: 1px solid red;
+}
+
+.popup__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  min-height: 15px;
+  margin-top: 5px;
+  display: block;
+  visibility: hidden;
+}
+
+.popup__error_visible {
+  visibility: visible;
+}
+
+.popup_type_confirm .popup__content {
+
+  padding: clamp(16px, 5vw, 36px);
+  box-sizing: border-box;
+}

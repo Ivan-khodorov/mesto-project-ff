@@ -1,5 +1,10 @@
+function getErrorElement(formElement, inputElement) {
+    const selector = `.popup__error_type_${inputElement.name.replace(/-/g, '\\-')}`;
+    return formElement.querySelector(selector);
+}
+
 export function showInputError(formElement, inputElement, config) {
-    const errorElement = formElement.querySelector(`.popup__error_type_${inputElement.name}`);
+    const errorElement = getErrorElement(formElement, inputElement);
     if (inputElement && errorElement) {
         inputElement.classList.add(config.inputErrorClass);
         errorElement.textContent = inputElement.dataset.errorMessage && inputElement.validity.patternMismatch
@@ -10,14 +15,13 @@ export function showInputError(formElement, inputElement, config) {
 }
 
 export function hideInputError(formElement, inputElement, config) {
-    const errorElement = formElement.querySelector(`.popup__error_type_${inputElement.name}`);
+    const errorElement = getErrorElement(formElement, inputElement);
     if (inputElement && errorElement) {
         inputElement.classList.remove(config.inputErrorClass);
         errorElement.classList.remove(config.errorClass);
         errorElement.textContent = '';
     }
 }
-
 
 function checkInputValidity(formElement, inputElement, config) {
     if (!inputElement.validity.valid) {

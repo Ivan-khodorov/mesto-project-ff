@@ -14,7 +14,12 @@
   </header>
   <main class="content">
     <section class="profile page__section">
-      <div class="profile__image"></div>
+      <div class="profile__image">
+        <img src="images/avatar.jpg" alt="Аватар" class="profile__avatar">
+        <div class="profile__avatar-overlay">
+          <img src="images/avatar_icon.svg" alt="Редактировать" class="profile__avatar-icon">
+        </div>
+      </div>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button"></button>
@@ -32,7 +37,6 @@
     </p>
   </footer>
 
-  <!-- Попап редактирования профиля -->
   <div class="popup popup_type_edit">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
@@ -55,28 +59,46 @@
     </div>
   </div>
 
-  <!-- Попап добавления новой карточки -->
   <div class="popup popup_type_new-card">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form" name="new-place" novalidate>
-        <input type="text" name="place-name" class="popup__input popup__input_type_card-name"
-               placeholder="Название" required minlength="2" maxlength="30"
-               pattern="^[А-Яа-яЁёA-Za-z\s\-]+$"
-               data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
-        <span class="popup__error popup__error_type_card-name"></span>
-
-        <input type="url" name="link" class="popup__input popup__input_type_url"
-               placeholder="Ссылка на картинку" required>
-        <span class="popup__error popup__error_type_url"></span>
-
+        <input
+                type="text"
+                name="place-name"
+                class="popup__input popup__input_type_card-name"
+                placeholder="Название"
+                required
+                minlength="2"
+                maxlength="30"
+                pattern="^[А-Яа-яЁёA-Za-z\s\-]+$"
+                data-error-message="Разрешены только буквы, дефисы и пробелы"/>
+        <span class="popup__error popup__error_type_place-name"></span>
+        <input
+                type="url"
+                name="link"
+                class="popup__input popup__input_type_url"
+                placeholder="Ссылка на картинку"
+                required
+                pattern="https?:\/\/(www\.)?[^\s]+"
+                data-error-message="Введите корректный адрес сайта"/>
+        <span class="popup__error popup__error_type_link"></span>
         <button type="submit" class="button popup__button">Сохранить</button>
       </form>
     </div>
   </div>
 
-  <!-- Попап редактирования аватара -->
+  <div class="popup popup_type_confirm">
+    <div class="popup__content">
+      <button type="button" class="popup__close "></button>
+      <h3 class="popup__title popup__title_confirm">Вы уверены?</h3>
+      <form class="popup__form" name="confirm-delete">
+        <button type="submit" class="button popup__button">Да</button>
+      </form>
+    </div>
+  </div>
+
   <div class="popup popup_type_avatar">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
@@ -95,7 +117,7 @@
     </div>
   </div>
 
-  <!-- Попап просмотра изображения -->
+
   <div class="popup popup_type_image">
     <div class="popup__content popup__content_content_image">
       <button type="button" class="popup__close"></button>
@@ -105,20 +127,20 @@
   </div>
 </div>
 
-<!-- Шаблон карточки -->
 <template id="card-template">
   <li class="places__item card">
     <img class="card__image" src="#" alt="" />
     <button type="button" class="card__delete-button"></button>
     <div class="card__description">
       <h2 class="card__title"></h2>
-      <div class="card__like-container">
+      <div>
+        <div class="card__like-container">
         <button type="button" class="card__like-button"></button>
-        <span class="card__like-count">0</span>
+        <span class="card__like-counter">0</span>
+        </div>
       </div>
     </div>
   </li>
 </template>
-
 </body>
 </html>

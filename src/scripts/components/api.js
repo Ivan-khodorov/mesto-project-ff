@@ -1,4 +1,3 @@
-const checkStatus = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 const config = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/wff-cohort-37',
     headers: {
@@ -7,12 +6,8 @@ const config = {
     }
 };
 
-
 function handleResponse(res) {
-    if (res.ok) {
-        return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 }
 
 export function getUserInfo() {
