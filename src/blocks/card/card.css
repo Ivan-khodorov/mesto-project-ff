@@ -13,3 +13,10 @@
   position: relative;
   overflow: hidden;
 }
+.card__like-counter {
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  margin-top: 3px;
+  text-align: center;
+}
